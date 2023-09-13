@@ -1,0 +1,73 @@
+<launch>
+  <!-- 车辆参数 -->
+    <param name="car_length" type="double" value="0.696" />
+    <param name="car_width" type="double" value="0.452" />
+    <param name="car_height" type="double" value="0.719" />
+    <param name="tof_height" type="double" value="-0.496" />
+    <!-- <param name="tof_height" type="double" value="-0.47" /> -->
+  <!-- 地面提取参数************************************************************************************** -->
+  <param name="voxel_size" type="double" value="0.05" />
+  <param name="point_to_groundsym" type="double" value="0.1" />
+  <param name="nan_ground_num" type="int" value="2" />
+  <!-- 度 -->
+  <param name="angle_the" type="double" value="25" /> 
+  <!-- 有效范围 -->
+  <param name="range_x" type="double" value="10" />
+  <param name="range_y" type="double" value="1.5" />
+  <param name="range_z" type="double" value="4" />
+  <param name="livox_range_x" type="double" value="10" />
+  <param name="livox_range_y" type="double" value="10" />
+  <param name="livox_range_z" type="double" value="2" />
+  <!-- 检测区域宽度 -->
+  <param name="detec_y" type="double" value="0.45" />
+  <param name="nearest_dis" type="double" value="0.2" />
+  <!-- 障碍物距离阈值 eturn 0:no obj,>far; 1:near-far; 2:<near -->
+  <param name="obj_dis_near" type="double" value="0.70" />
+  <param name="obj_dis_far" type="double" value="2.5" />
+  <param name="livox_obj_dis_near" type="double" value="0.1" />
+  <param name="livox_obj_dis_far" type="double" value="3" />
+  <!-- planning -->
+  <param name="enable_planning" type="int" value="0" />
+  <param name="obj_wait_time" type="double" value="0.5" />
+  <param name="map_grid_size" type="double" value="0.1" />
+  <param name="plan_safe_dis" type="double" value="0.0" />
+
+
+  <!-- 配准参数************************************************************************************** -->
+  <!-- <param name="Teach_pcd_path" type="string" value="/media/liwen/KK/Wen_Li/Key_frame/teach_keyframe/pcd" />
+  <param name="Trans_path" type="string" value="/media/liwen/KK/Wen_Li/Key_frame/teach_keyframe/keyframe_trans.txt" /> -->
+  <param name="Teach_pcd_path" type="string" value="/home/firefly/Documents/Code_Test/Teach_data/pcd" />
+  <param name="Trans_path" type="string" value="/home/firefly/Documents/Code_Test/Teach_data/ti_livox.txt" />
+
+  <param name="repeat_ds_size" type="double" value="0.5" />
+  <param name="teach_ds_size" type="double" value="0.25" />
+  <param name="gicp_threads" type="int" value="4" />
+
+  <!-- 控制参数************************************************************************************** -->
+  <node pkg="icp_repeat" type="pcl_icp" name="icp_repeat" output="log">
+  <!-- <param name="map_file_path" type="string" value=" /home/xrx/mid360_ws/src/livox_mapping/data" /> -->
+  <param name="Kp1" type="double" value="-4" />
+  <param name="Kd1" type="double" value="-0.5" />
+  <param name="Kp2" type="double" value="-1.5" />
+  <param name="Kd2" type="double" value="-1.2" />
+  <param name="Kp3" type="double" value="-0.2" />
+  <param name="Angular_limit" type="double" value="0.66" />
+  <param name="Linear_limit" type="double" value="0.8" />
+  
+
+  <param name="Circle_Angular_High" type="double" value="0.6" />
+  <param name="Circle_Angular_Low" type="double" value="0.25" />
+  <param name="Circle_Linear_limit" type="double" value="0.6" />
+
+  <!-- <rosparam param="T_tof_to_livox"> [ 0, 0, 1, 0.1,
+                                      1, 0, 0, 0,
+                                      0, 1, 0, 0,
+                                      0, 0, 0, 1]</rosparam> -->
+
+  <rosparam param="T_tof_to_livox"> [ 0, 0, 1, 0.07,
+                                      1, 0, 0, 0.025,
+                                      0, 1, 0, -0.21,
+                                      0, 0, 0, 1]</rosparam>
+  </node>
+
+</launch>

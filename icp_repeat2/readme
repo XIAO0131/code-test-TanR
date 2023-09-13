@@ -1,0 +1,17 @@
+删除多余代码，整理代码
+设置NDT和GICP线程数：4
+修改时间和频率计算方式：测试周期和代码单次耗时
+添加障碍检测，测试class
+
+
+
+
+
+
+
+
+
+
+
+else if(frameNum>0 && ecurrentX<-1)
+else if (UX<-1*Linear_limit)
